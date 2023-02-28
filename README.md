@@ -1,5 +1,5 @@
 ## Yet-another-shell-script
-## fetch 'origin-folder/' to 'destination/' easily
+## isolate different files in 'origin-folder/' and 'destination/' folders
 
 
 ### Installation
@@ -10,10 +10,6 @@ $ chmod u+x fetch.sh
 
 ### How to use
 ```$sh
-$ fetch source-folder
-
-# OR
-
 $ fetch source-folder destination
 ```
 ### Version Notes

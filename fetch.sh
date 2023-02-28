@@ -10,14 +10,23 @@ echo `clear`
 
 if [ -z "$1" ]
   then
-    echo ${PR}"\nerr{0} ${CY}::missing::\n"
+    echo ${PR}"\n> err{0} :: ${CY}missing-parameters\n"
 else
     if [ -z "$2" ]; then
-        cp -R -n -p $1/ $1-origin/
-        echo ${CY}"\n> files fetched to ${RED}:: ${GR}$1-origin/${NC}\n"
+        #cp -R -n -p $1/ $1-origin/
+        echo ${CY}"\n> err{1} ${RED}:: missing-last-parameter${NC}\n"
     else 
-        cp -R -n -p $1/ $2/
-        echo ${PR}"\n> files from ${GR}'$1/'${CY} fetched to: ${GR}'$2/'${NC}\n"
+        if [ ! -d $1/  ] || [ ! -d $2/  ]
+        then
+            echo ${CY}"\n> err{2} ${RED}:: folders-does-not-exist${NC}\n"
+        else
+            rsync -avz --update --existing --remove-source-files $1/ $2/
+            find $1/ -type d -empty -delete
+            #rm -rf $1/*
+            #cp -R -n -p $1/ $2/
+            echo ${PR}"\n> files from ${GR}'$1/'${CY} are isolated to: ${GR}'$2/'${NC}\n"
+        fi
+
     fi
 fi
 
