@@ -20,9 +20,11 @@ else
         then
             echo ${CY}"\n> err{2} ${RED}:: folders-does-not-exist${NC}\n"
         else
-            rsync -avz --update --existing --remove-source-files $1/ $2/
+            cp -R -n -p $2/ .tmp_$2/
+            rsync -avz --update --existing --remove-source-files $1/ .tmp_$2/
+            rsync -avz --update --ignore-existing --remove-source-files .tmp_$2/ $2/
             find $1/ -type d -empty -delete
-            #rm -rf $1/*
+            rm -rf .tmp_$2/
             #cp -R -n -p $1/ $2/
             echo ${PR}"\n> files from ${GR}'$1/'${CY} are isolated to: ${GR}'$2/'${NC}\n"
         fi
