@@ -1,5 +1,5 @@
 ## Yet-another-shell-script
-## isolate different files in 'origin-folder/' and 'destination/' folders
+## isolate different files in 'origin/' and 'destination/' folders
 
 
 ### Installation
